@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.headerContainer {
+    width: 100%;
+    padding: 1rem 5rem;
+    display: flex;
+    align-items: center;
+    background-color: white;
+
+}
+
+.logoBox {
+    width: 20%;
+}
+
+.logo {
+    /* aspect-ratio: 3/2 auto; */
+    width: 7rem;
+    height: 2.5rem;
+}
+
+.menuBox {
+    width: 70%;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.menu {
+    font-size: 1.1rem;
+    margin-left: 2rem;
+    text-decoration: none;
+    color: #47515b
+}
+
+.menu:hover {
+    cursor: pointer;
+    color: #e8505b;
+}

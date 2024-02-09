@@ -1,0 +1,43 @@
+.form-container{
+    background-color: #f1f1f1;
+    padding: 2rem;
+    width: 50%;
+    height: 70vh;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.form-title{
+    color: #3473b8;
+}
+
+.form-modal{
+    background: "white";
+    height: 150;
+    width: 240;
+    margin: "auto";
+    padding: "2%";
+    border: "2px solid #000";
+    border-radius: "10px";
+    box-shadow: "2px solid black";
+}
+
+.close-btn {
+    text-align: right;
+    position: fixed;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.close-btn:hover {
+    background-color: #e81123;
+    color: white;
+    font-weight: bold;
+}
