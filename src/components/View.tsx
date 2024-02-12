@@ -7,6 +7,7 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 function View() {
   const [filter, setfilter] = useState({});
   const [filteredResult, setFilteredResult] = useState(0);
+  const [cars, setCars] = useState<String[]>([]);
 
   const filterResult = (e: any) => {
     setfilter({
@@ -26,6 +27,23 @@ function View() {
   const handleFilters = (e: any) => {
     e.preventDefault();
     console.log(vehiclesInStore);
+  };
+
+  const getCarFilter = (e: any) => {
+    if (!cars.includes(e.target.value) && e.target.checked) {
+      setCars((cars) => [...cars, e.target.value]);
+    } else if (!e.target.checked) {
+      const index = cars.indexOf(e.target.value);
+      if (index > -1) {
+        cars.splice(index, 1);
+      }
+    }
+    console.log(cars);
+    setfilter({
+      ...filter,
+      [e.target.name]: cars,
+    });
+    console.log("updated filter", filter);
   };
 
   return (
@@ -78,7 +96,7 @@ function View() {
                 id="vehicle1"
                 name="cars"
                 value="Wagon R"
-                onChange={filterResult}
+                onChange={getCarFilter}
               />
               <label> Wagon R</label>
               <br />
@@ -87,7 +105,7 @@ function View() {
                 id="vehicle2"
                 name="cars"
                 value="Celerio"
-                onChange={filterResult}
+                onChange={getCarFilter}
               />
               <label> Celerio</label>
               <br />
@@ -96,16 +114,16 @@ function View() {
                 id="vehicle3"
                 name="cars"
                 value="Swift"
-                onChange={filterResult}
+                onChange={getCarFilter}
               />
               <label> Swift</label>
               <br />
               <input
                 type="checkbox"
                 id="vehicle4"
-                name="Swift-Dzire"
+                name="cars"
                 value="Swift Dzire"
-                onChange={filterResult}
+                onChange={getCarFilter}
               />
               <label> Swift Dzire</label>
               <br />
@@ -115,7 +133,7 @@ function View() {
                 type="radio"
                 id="firstOwner"
                 name="owner"
-                value="firstOwner"
+                value={1}
                 onChange={filterResult}
               />
               <label>1st Owner</label>
@@ -124,7 +142,7 @@ function View() {
                 type="radio"
                 id="secondOwner"
                 name="owner"
-                value="secondOwner"
+                value={2}
                 onChange={filterResult}
               />
               <label>2nd Owner</label>
@@ -133,13 +151,61 @@ function View() {
                 type="radio"
                 id="thirdOwner"
                 name="owner"
-                value="thirdOwner"
+                value={3}
                 onChange={filterResult}
               />
               <label>Third Owner</label>
               <br />
               <br />
-
+              <h4>Budgets</h4>
+              <div className="budget-container">
+                <div
+                  className="budget-value"
+                  onClick={() =>
+                    setfilter({
+                      ...filter,
+                      budget: "Less than 2L",
+                    })
+                  }
+                >
+                  Less than 2L
+                </div>
+                <div
+                  className="budget-value"
+                  onClick={() =>
+                    setfilter({
+                      ...filter,
+                      budget: "2L-4L",
+                    })
+                  }
+                >
+                  2L - 4L
+                </div>
+                <div
+                  className="budget-value"
+                  onClick={() =>
+                    setfilter({
+                      ...filter,
+                      budget: "4L-6L",
+                    })
+                  }
+                >
+                  4L - 6L
+                </div>
+                <div
+                  className="budget-value"
+                  onClick={() =>
+                    setfilter({
+                      ...filter,
+                      budget: "More than 6L",
+                    })
+                  }
+                >
+                  More than 6L
+                </div>
+              </div>
+              <br />
+              <br />
               <h4>Fuel Types</h4>
               <input
                 type="radio"
@@ -202,7 +268,7 @@ function View() {
           availabe in our store.
           <br />
           <br />
-          <h4 className="filter-json-title">JSON (Filter)</h4>
+          <h4 className="filter-json-title">JSON (Filter Conditions)</h4>
           <br />
           <div className="filter-json">{JSON.stringify(filter, null, 2)}</div>
         </div>
